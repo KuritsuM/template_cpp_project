@@ -7,7 +7,7 @@
 BOOST_AUTO_TEST_SUITE(test_nothing_func)
 
 BOOST_AUTO_TEST_CASE(test_nothing) {
-    BOOST_CHECK( Library::EmptyLibrary::do_nothing() == 1 );
+    BOOST_CHECK( Library::EmptyLibrary::do_nothing() == 0 );
 }
 
 BOOST_AUTO_TEST_SUITE_END()
