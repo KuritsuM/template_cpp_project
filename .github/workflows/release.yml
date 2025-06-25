@@ -16,7 +16,7 @@ jobs:
         with:
           submodules: true
       - run: sudo apt-get update
-      - run: sudo apt-get install libboost-test-dev -y
+      - run: sudo apt-get install libboost-tests-dev -y
       - run: cmake . -DPROJECT_PATCH_VERSION=${{ github.run_number }}
       - run: cmake --build .
       - run: ctest --output-on-failure

@@ -15,14 +15,18 @@ configure_file(
     ${CMAKE_BINARY_DIR}/generated/current_version.hpp
 )
 
-add_executable(template_cpp_project main.cpp)
+add_executable(template_cpp_project main.cpp ip_filter.hpp)
 add_library(emptylibrary EmptyLibrary.cpp)
-add_executable(test_executable test_entrypoint.cpp)
-
-set_target_properties(template_cpp_project emptylibrary test_executable PROPERTIES
-    CMAKE_CXX_STANDARD 20
-    CXX_STANDARD_REQUIRED ON
+add_executable(
+        test_executable
+        tests/test_entrypoint.cpp
+        ip_filter.hpp
+        tests/ip_filter_test.cpp
 )
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 target_include_directories(emptylibrary
     PUBLIC "${CMAKE_BINARY_DIR}/generated"
@@ -62,13 +66,13 @@ if (MSVC)
     )
 else ()
     target_compile_options(template_cpp_project PRIVATE
-        -Wall -Wextra -pedantic -Werror
+        -Wall -Wextra -pedantic -Werror -std=c++20
     )
     target_compile_options(emptylibrary PRIVATE
-        -Wall -Wextra -pedantic -Werror
+        -Wall -Wextra -pedantic -Werror -std=c++20
     )
     target_compile_options(test_executable PRIVATE
-        -Wall -Wextra -pedantic -Werror
+        -Wall -Wextra -pedantic -Werror -std=c++20
     )
 endif ()
 
